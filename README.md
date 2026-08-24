@@ -1,6 +1,6 @@
 # E-Commerce Funnel & Retention Analysis (Cosmetics Shop)
 
-Exploratory analysis of 5 months of e-commerce event data from a cosmetics shop: view/cart/purchase funnel behavior, a look at an A/B-style product change, and a time-to-next-purchase study using survival analysis.
+Exploratory analysis of 5 months of e-commerce event data from a cosmetics shop: view/cart/purchase funnel behavior, and a time-to-next-purchase study using survival analysis.
 
 ## Project structure
 
