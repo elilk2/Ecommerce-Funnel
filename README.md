@@ -17,9 +17,14 @@ project/
 │   └── 02_time_to_next_purchase.ipynb # repeat-purchase timing, survival analysis
 │
 ├── src/
-│   └── ingestion.py                  # unions raw CSVs into master_events.parquet
+│   ├── ingestion.py                  # unions raw CSVs into master_events.parquet
+│   └── survival.py                   # refund flagging, occasion collapsing, censoring assignment
+│
+├── tests/
+│   └── test_survival.py              # unit tests for src/survival.py
 │
 ├── requirements.txt
+├── pyproject.toml
 └── README.md
 ```
 
@@ -38,6 +43,12 @@ python src/ingestion.py
 ```
 
 This produces `data/processed/master_events.parquet`, which both notebooks read from.
+
+Run the test suite with:
+
+```bash
+pytest
+```
 
 ## Notebooks
 
@@ -58,7 +69,7 @@ Builds on the cleaned purchase data to answer: **how long until a customer repur
 - Distribution of observed repurchase gaps
 - Kaplan-Meier survival curve to properly account for the censored 71% of occasions
 
-**Key finding:** of 155,617 purchase occasions, only 29.0% saw an observed repurchase within the 5-month window. A naive average of only the observed gaps understates true repurchase time (~19-day median) because it ignores the majority of occasions that hadn't repurchased yet; the Kaplan-Meier estimate (25th percentile ≈ 41 days) is the more defensible figure. Full write-up and limitations are in the notebook's Findings section.
+**Key finding:** of 155,616 purchase occasions, only 29.0% saw an observed repurchase within the 5-month window. A naive average of only the observed gaps understates true repurchase time (~19-day median) because it ignores the majority of occasions that hadn't repurchased yet; the Kaplan-Meier estimate (25th percentile ≈ 41 days) is the more defensible figure. Full write-up and limitations are in the notebook's Findings section.
 
 ## Known limitations
 
